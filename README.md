@@ -43,7 +43,11 @@ $D_{KL}(p_x || p_\theta)$ is also called the forward KL divergence and $D_{KL}(p
    $$
      f(u) = \frac12 |u-1|.
 
-# Algorithm for f-divergenve minimizations
+# Algorithm for f-divergence minimizations
+
+(for any choice of the function f)
+
+The objective is to minimise the f-divergence between $p_x$ and $p_\theta$ over $\theta$ without knowing the explicit form of the two distribution functions but only using samples from both the distributions. Samples from $p_x$ is the dataset $D$ and samples from $p_\theta$ is the output of a parametrized deep-networks whos input is a random variable sampled from some arbitrary but easy-to-sample distribution (for instance $N(0,1)$). 
 
 
 
