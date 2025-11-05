@@ -34,14 +34,11 @@ $D_{KL}(p_x || p_\theta)$ is also called the forward KL divergence and $D_{KL}(p
 
 2. JS divergence:
 
-   $$
-      f(u) = \frac12\left( u \log u -(u+1)\log\left(\frac{u+1}{2}\right)\right)
-   $$
+   $$f(u) = \frac12 \left( u \log u - (u+1)\log\left(\frac{u+1}{2}\right) \right)$$
 
 3. Total variation distance.
 
-   $$
-     f(u) = \frac12 |u-1|.
+   $$f(u) = \frac12 |u-1|$$
 
 # Algorithm for f-divergence minimizations
 
