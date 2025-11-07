@@ -42,7 +42,7 @@ $D_{KL}(p_x \parallel p_\theta)$ is also called the forward KL divergence and $D
 
 # Algorithm for f-divergence minimization
 
-The objective is to minimise the f-divergence between $p_x$ and $p_\theta$ over $\theta$ for any choice of the function $f$ without having to know the explicit form of the two distribution functions. The minimization is to be done only using samples from both the distributions. Samples from $p_x$ is the dataset $D$ and samples from $p_\theta$ is the output of a parametrized deep-networks whos input is a random variable sampled from some arbitrary but easy-to-sample distribution (for instance $N(0,1)$ ). 
+The objective is to minimise the f-divergence between $p_x$ and $p_\theta$ over $\theta$ for any choice of the function $f$ without having to know the explicit form of the two distribution functions. The minimization is to be done only using samples from both the distributions. Samples from $p_x$ is the given dataset $D$ and samples from $p_\theta$ is the output of a parametrized deep-networks whos input is a random variable sampled from some arbitrary but easy-to-sample distribution (for instance $N(0,1)$ ). 
 
 In order to describe this algorithm, we first need to define the *conjugate* of a convex function
 
@@ -52,6 +52,28 @@ Given a convex function $f: R^n \to R$ its conjugate function $f^* : R^n \to R$ 
 
 $$
 f^*(y) = \sup_{x\in \text{dom} f} (y^T x-f(x))
+$$
+
+Some properties: 
+- f^* is a convex function (this is true regardless of whether or not f is convex)
+- (f^*)^* the conjugate of the conjugate is the original function f (true when f is convex and closed).
+
+We use the last property to write the f-Divergence as
+
+$$
+D_f = \int dx~p_\theta(x) \sup_t \left( t \frac{p_x(x)}{p_\theta(x)} - f^*(t)\right)
+$$
+
+This can be recast into an inequality
+
+$$
+D_f \geq \sup_{T} \int dx~p_\theta(x) \left( T(x) \frac{p_x(x)}{p_\theta(x)} - f^*(T(x))\right)
+$$
+
+where the supremum is now over the space of functions $T$. The above can be re-written as
+
+$$
+D_f \geq \sup_{T} \left( \mathbb{E}_{p_x}[T(x)] - \mathbb{E}_{p_\theta}[f^*(T[x])]\right)
 $$
 
 
